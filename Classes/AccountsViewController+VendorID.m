@@ -60,7 +60,9 @@
 								  nil];
 		loginPage = [self stringFromSynchronousPostRequestWithURL:[NSURL URLWithString:[ittsBaseURL stringByAppendingString:loginAction]] bodyDictionary:postDict];
 		
-		if (loginPage == nil || [loginPage rangeOfString:signoutSentinel].location == NSNotFound) {
+        NSString *signoutClass = @"sign-out";
+		//if (loginPage == nil || [loginPage rangeOfString:signoutSentinel].location == NSNotFound) {
+        if (loginPage == nil || [loginPage rangeOfString:signoutClass].location == NSNotFound) {
 			[self performSelectorOnMainThread:@selector(failedToLoadVendorIDs) withObject:nil waitUntilDone:YES];
 			[pool release];
 			return;
